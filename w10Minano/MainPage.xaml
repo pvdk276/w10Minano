@@ -6,7 +6,77 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--AdaptiveTrigger-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Phone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.CompactPaneLength" Value="0" ></Setter>
+                        <Setter Target="tbKanji.Text" Value="Phone mode" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.CompactPaneLength" Value="50" ></Setter>
+                        <Setter Target="tbKanji.Text" Value="Tablet mode" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1366"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.CompactPaneLength" Value="50" ></Setter>
+                        <Setter Target="tbKanji.Text" Value="Desktop mode" ></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <!--Content-->
+        <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
+                CompactPaneLength="0" OpenPaneLength="230">
+            <SplitView.Pane>
+                <StackPanel Background="{ThemeResource SystemControlForegroundAccentBrush}">
+                    <Button x:Name="HamburgerButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                     Width="50" Height="50" Background="Transparent" Foreground="White" Click="HamburgerButton_Click"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnHome" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
+                     Width="50" Height="50" Background="Transparent" Foreground="White"/>
+                        <TextBlock Text="Trang chính" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnDic" FontFamily="Segoe MDL2 Assets" Content="&#xE1D3;"
+                         Width="50" Height="50" Background="Transparent" Foreground="White"/>
+                        <TextBlock Text="Từ điển" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnDSbh" FontFamily="Segoe MDL2 Assets" Content="&#xE292;"
+                         Width="50" Height="50" Background="Transparent" Foreground="White"/>
+                        <TextBlock Text="Danh sách bài học" FontSize="18" VerticalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <TextBlock x:Name="tbTitle" Text="Mina no nihongo" FontSize="30" Foreground="Black"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="58,10,0,590" Width="302"/>
+                    <StackPanel>
+                        <TextBlock x:Name="tbKanji" Text="TextBlock" FontSize="60" Foreground="Black" 
+                		HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,99,10,300" Padding="50,65,20,20" Height="241" Width="340"/>
+                    </StackPanel>
+                    <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Foreground="Black"
+                	Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" Margin="3,0,0,590">
+                        <ListView x:Name="listView" HorizontalAlignment="Left" Height="50" Margin="-18,25,-32,-75" VerticalAlignment="Top" Width="50"/>
+                    </Button>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>
